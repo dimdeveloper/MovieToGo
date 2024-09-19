@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "6A78A16D-8198-49F8-964C-F2ACF2F77BE0"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F161B0F8-92C3-4E01-BF12-FC7729BC4B2E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MoviePlayer/Components/NetworkCall.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "loadData(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F161B0F8-92C3-4E01-BF12-FC7729BC4B2E - f25c6d81d41de7cd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in MovieToGo.NetworkCall.loadData(completion: (Swift.Result&lt;Swift.Array&lt;MovieToGo.Movie&gt;, MovieToGo.RequestError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "MovieToGo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dimmac/Projects/MoviePlayer/MoviePlayer/Components/NetworkCall.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "F161B0F8-92C3-4E01-BF12-FC7729BC4B2E - f25c6d81d41de7cd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in MovieToGo.NetworkCall.loadData(completion: (Swift.Result&lt;Swift.Array&lt;MovieToGo.Movie&gt;, MovieToGo.RequestError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "MovieToGo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dimmac/Projects/MoviePlayer/MoviePlayer/Components/NetworkCall.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C5E91E17-0480-4240-AE3A-37A21F487A36"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MoviePlayer/Views/MovieList.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4C667790-1008-4CB2-B7D3-AB6950BC33BA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MoviePlayer/ViewModels/MoviesViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "fetchMovies(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4C667790-1008-4CB2-B7D3-AB6950BC33BA - addf92470e350679"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;MovieToGo.Movie&gt;, MovieToGo.RequestError&gt;) -&gt; () in MovieToGo.MoviesViewModel.fetchMovies() -&gt; Swift.Array&lt;MovieToGo.Movie&gt;"
+                  moduleName = "MovieToGo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dimmac/Projects/MoviePlayer/MoviePlayer/ViewModels/MoviesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "4C667790-1008-4CB2-B7D3-AB6950BC33BA - addf92470e350679"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;MovieToGo.Movie&gt;, MovieToGo.RequestError&gt;) -&gt; () in MovieToGo.MoviesViewModel.fetchMovies() -&gt; Swift.Array&lt;MovieToGo.Movie&gt;"
+                  moduleName = "MovieToGo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dimmac/Projects/MoviePlayer/MoviePlayer/ViewModels/MoviesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "152">
+               </Location>
+               <Location
+                  uuid = "4C667790-1008-4CB2-B7D3-AB6950BC33BA - 7abe9f7863d6ade"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;MovieToGo.Movie&gt;, MovieToGo.RequestError&gt;) -&gt; () in MovieToGo.MoviesViewModel.fetchMovies(completion: (Swift.Array&lt;MovieToGo.Movie&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "MovieToGo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dimmac/Projects/MoviePlayer/MoviePlayer/ViewModels/MoviesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "176">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B17F8D79-7060-40CE-A3AF-5F853CA22AA7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MoviePlayer/ViewModels/MoviesViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "fetchMovies(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B17F8D79-7060-40CE-A3AF-5F853CA22AA7 - addf92470e3505d4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;MovieToGo.Movie&gt;, MovieToGo.RequestError&gt;) -&gt; () in MovieToGo.MoviesViewModel.fetchMovies() -&gt; Swift.Array&lt;MovieToGo.Movie&gt;"
+                  moduleName = "MovieToGo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dimmac/Projects/MoviePlayer/MoviePlayer/ViewModels/MoviesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "236">
+               </Location>
+               <Location
+                  uuid = "B17F8D79-7060-40CE-A3AF-5F853CA22AA7 - 7abe9f7863d6a9c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;MovieToGo.Movie&gt;, MovieToGo.RequestError&gt;) -&gt; () in MovieToGo.MoviesViewModel.fetchMovies(completion: (Swift.Array&lt;MovieToGo.Movie&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "MovieToGo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dimmac/Projects/MoviePlayer/MoviePlayer/ViewModels/MoviesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "216">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

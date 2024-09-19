@@ -21,11 +21,10 @@ struct MovieList: View {
                 } else {
                     NavigationView {
                         List(movies) { movie in
-                            NavigationLink(destination: MovieDetailView(movie: movie)) {
-                                
-                                MovieCard(movie: movie)
-                                
-                            }
+                            MovieCard(movie: movie)
+                                .overlay(NavigationLink(destination: MovieDetailView(movie: movie)) {   
+                                }.fixedSize().opacity(0.0))
+                            
                         }
                         .navigationBarTitleDisplayMode(.inline)
                         
@@ -37,15 +36,16 @@ struct MovieList: View {
                                 }
                             }
                         }
-                        .listRowSpacing(20)
-                        
                     }
-                    
+                    .listRowSpacing(20)
                 }
                 
-                
             }
+            
+            
         }
+        
+        
         .onAppear(){
             viewModel.fetchMovies { result in
                 self.movies = result
@@ -64,6 +64,7 @@ struct ActivityIndicator: View {
             .progressViewStyle(CircularProgressViewStyle(tint: tintColor))
     }
 }
+    
 #Preview {
     MovieList()
 }

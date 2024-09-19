@@ -19,6 +19,16 @@ struct TabBar: View {
                     Label("Favourite", systemImage: "star")
                 }
         }
+        .accentColor(Color.accent)
+    }
+}
+
+extension Color {
+    static var accent: Color {
+        return Color("MainAccentColor")
+    }
+    static var description: Color {
+        return Color("DescriptionTextColor")
     }
 }
 

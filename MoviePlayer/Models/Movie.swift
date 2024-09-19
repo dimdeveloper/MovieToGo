@@ -13,6 +13,8 @@ struct Movie: Identifiable, Codable {
     let description: String
     let releaseDate: String
     let posterPath: String
+    let backdropPath: String
+    let voteAverage: Double
 
 }
 

@@ -17,12 +17,16 @@ extension MoviesResponce {
         let overview: String
         let posterPath: String
         let releaseDate: String
+        let backdropPath: String
+        let voteAverage: Double
         
         private enum CodingKeys: String, CodingKey {
             case posterPath = "poster_path"
             case releaseDate = "release_date"
             case originalTitle = "original_title"
             case overview
+            case backdropPath = "backdrop_path"
+            case voteAverage = "vote_average"
         }
     }
 }
@@ -33,7 +37,7 @@ extension MoviesResponce {
     func modelMap() -> [Movie] {
         var movies: [Movie] = []
         results.forEach { result in
-            let movie = Movie(name: result.originalTitle, description: result.overview, releaseDate: result.releaseDate, posterPath: result.posterPath)
+            let movie = Movie(name: result.originalTitle, description: result.overview, releaseDate: result.releaseDate, posterPath: result.posterPath, backdropPath: result.backdropPath, voteAverage: result.voteAverage)
             movies.append(movie)
         }
         return movies

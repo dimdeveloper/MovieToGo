@@ -13,32 +13,48 @@ struct MovieList: View {
     @State var isLoading = true
     
     var body: some View {
+        
         ZStack {
-           // Color(.systemBackground).ignoresSafeArea()
             VStack {
-                HStack {
-                    Image("Logo")
-                }
                 if isLoading{
                     ActivityIndicator()
                 } else {
-                    List(movies) { movie in
-                        NavigationLink(destination: MovieDetailView(movie: movie)) {
-                            MovieCard(movie: movie)
+                    NavigationView {
+                        List(movies) { movie in
+                            NavigationLink(destination: MovieDetailView(movie: movie)) {
+                                
+                                MovieCard(movie: movie)
+                                
+                            }
                         }
+                        .navigationBarTitleDisplayMode(.inline)
+                        
+                        .toolbar {
+                            ToolbarItem(placement: .principal) {
+                                VStack {
+                                    Spacer()
+                                    Image("Logo")
+                                }
+                            }
+                        }
+                        .listRowSpacing(20)
+                        
                     }
-                    .listRowSpacing(20)
+                    
                 }
+                
+                
             }
-            .onAppear(){
-                viewModel.fetchMovies { result in
-                    self.movies = result
-                    self.isLoading = false
-                }
         }
+        .onAppear(){
+            viewModel.fetchMovies { result in
+                self.movies = result
+                self.isLoading = false
+            }
         }
     }
 }
+
 
 struct ActivityIndicator: View {
     var tintColor: Color = .orange

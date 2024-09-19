@@ -30,10 +30,9 @@ struct MovieCard: View {
                         .fontWeight(.bold)
                 }
             }
-            .onTapGesture(perform: {
-                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Code@*/ /*@END_MENU_TOKEN@*/
-            })
         }
+        
+        
         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
     }
 }

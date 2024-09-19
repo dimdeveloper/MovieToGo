@@ -9,11 +9,39 @@ import SwiftUI
 
 struct MovieDetailView: View {
     
+    @Environment(\.dismiss) var dismiss
     var movie: Movie
     
     var body: some View {
-        ScrollView {
-            MovieImage(movie: movie)
+
+            ScrollView {
+                MovieImage(movie: movie)
+            }
+            .navigationBarBackButtonHidden(true)
+            .toolbar(content: {
+                ToolbarItem(placement: .navigation) {
+                    Button(action: {
+                        dismiss()
+                    }){
+                        Image("BackButton")
+                    }
+                    
+                }
+                ToolbarItem(placement: .principal) {
+                
+                                        Image("Logo")
+                
+                                }
+            })
+        
+        
+    }
+}
+
+private struct BackButton: View {
+    var body: some View {
+        Button("ku") {
+            
         }
     }
 }

@@ -20,14 +20,19 @@ struct MovieList: View {
                     ActivityIndicator()
                 } else {
                     NavigationView {
-                        List(movies) { movie in
-                            MovieCard(movie: movie)
-                                .overlay(NavigationLink(destination: MovieDetailView(movie: movie)) {   
-                                }.fixedSize().opacity(0.0))
-                            
+                        VStack {
+                            List(movies) { movie in
+                                MovieCard(movie: movie, viewModel: viewModel)
+                                    .overlay(NavigationLink(destination: MovieDetailView(viewModel: viewModel, movie: movie)) {
+                                    }.fixedSize().opacity(0.0))
+                                if movies.last?.id == movie.id {
+                                    if viewModel.currentMoviesPage < 46099 {
+                                        LastRowListView(viewModel: viewModel, movies: $movies)
+                                    }
+                                }
+                            }
                         }
                         .navigationBarTitleDisplayMode(.inline)
-                        
                         .toolbar {
                             ToolbarItem(placement: .principal) {
                                 VStack {
@@ -41,11 +46,7 @@ struct MovieList: View {
                 }
                 
             }
-            
-            
         }
-        
-        
         .onAppear(){
             viewModel.fetchMovies { result in
                 self.movies = result
@@ -55,6 +56,33 @@ struct MovieList: View {
     }
 }
 
+struct LastRowListView: View {
+    
+    var viewModel: MoviesViewModel
+    @Binding var movies: [Movie]
+    
+    var body: some View {
+        ZStack() {
+            VStack(alignment: .center) {
+                switch viewModel.loadState {
+                case .isLoading:
+                    ActivityIndicator()
+                case .notLoading:
+                    EmptyView()
+                }
+            }
+        }
+        .frame(height: 50)
+        .onAppear(){
+            viewModel.loadState = .notLoading
+            viewModel.currentMoviesPage += 1
+            viewModel.fetchMovies { result in
+                self.movies.append(contentsOf: result)
+                viewModel.loadState = .isLoading
+            }
+        }
+    }
+}
 
 struct ActivityIndicator: View {
     var tintColor: Color = .orange

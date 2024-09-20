@@ -9,13 +9,15 @@ import SwiftUI
 
 struct MovieCard: View {
     
+    @State var image: Image?
     var movie: Movie
+    var viewModel: MoviesViewModel
     
     var body: some View {
         ZStack {
             HStack(alignment: .top) {
                
-                    MovieImage(movie: movie)
+                    MovieImage(image: image)
                 
                 VStack(alignment: .leading, spacing: 12) {
                     Text(movie.name)
@@ -30,6 +32,12 @@ struct MovieCard: View {
                         .fontWeight(.semibold)
                 }
             }
+            .onAppear {
+                viewModel.loadImage(imagePath: movie.posterPath) { data in
+                    guard let image = UIImage(data: data) else {return}
+                    self.image = Image(uiImage: image)
+                }
+            }
         }
         
         
@@ -39,31 +47,29 @@ struct MovieCard: View {
 
 private struct MovieImage: View {
     
-    var movie: Movie
-    var imageURL = "https://image.tmdb.org/t/p/w500/"
+    var image: Image?
+    
     var body: some View {
         VStack {
-            AsyncImage(url: URL(string: imageURL + movie.posterPath)) { image in
+            if let image = image {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-            } placeholder: {
+            } else {
                 Image(systemName: "photo")
                     .resizable()
                     .scaledToFit()
                     .foregroundColor(.gray)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
             }
-            .frame(width: 128, height: 188)
-            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-                
         }
+        .frame(width: 128, height: 188)
+        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
 }
 
 
 
 #Preview {
-    MovieCard(movie: Movie(name: "Saving Bikini Bottom: The Sandy Cheeks Movie", description: "When Bikini Bottom is scooped from the ocean, scientific squirrel Sandy Cheeks and her pal SpongeBob SquarePants saddle up for Texas to save their town.", releaseDate: "2024-08-01", posterPath: "", backdropPath: "", voteAverage: 6.08))
+    MovieCard(movie: Movie(name: "Saving Bikini Bottom: The Sandy Cheeks Movie", description: "When Bikini Bottom is scooped from the ocean, scientific squirrel Sandy Cheeks and her pal SpongeBob SquarePants saddle up for Texas to save their town.", releaseDate: "2024-08-01", posterPath: "", backdropPath: "", voteAverage: 6.08), viewModel: MoviesViewModel())
 }

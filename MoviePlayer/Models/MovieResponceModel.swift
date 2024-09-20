@@ -8,7 +8,15 @@
 import Foundation
 
 struct MoviesResponce: Decodable {
+    let page: Int
     let results: [MovieResponceModel]
+    let totalPages: Int
+    
+    private enum CodingKeys: String, CodingKey {
+        case page
+        case totalPages = "total_pages"
+        case results
+    }
 }
 
 extension MoviesResponce {
@@ -36,6 +44,7 @@ extension MoviesResponce {
 extension MoviesResponce {
     func modelMap() -> [Movie] {
         var movies: [Movie] = []
+        print("Total pages is \(self.totalPages), current page is \(self.page)")
         results.forEach { result in
             let movie = Movie(name: result.originalTitle, description: result.overview, releaseDate: result.releaseDate, posterPath: result.posterPath, backdropPath: result.backdropPath, voteAverage: result.voteAverage)
             movies.append(movie)

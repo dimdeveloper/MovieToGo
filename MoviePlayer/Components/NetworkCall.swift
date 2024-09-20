@@ -22,14 +22,19 @@ class NetworkCall {
     typealias CompletionHandler = (Result<[Movie], RequestError>) -> Void
     
     let baseURL = "https://api.themoviedb.org/3/movie/popular"
-    let imageBaseURL = "https://image.tmdb.org/t/p/w500/"
-    let apiKey = "?api_key=ed0957c3c3f2acb89d27b394e9612d5e"
+    var imageURL = "https://image.tmdb.org/t/p/w500/"
+    let apiKeyName = "api_key"
+    let apiKeyValue = "ed0957c3c3f2acb89d27b394e9612d5e"
     
-    func loadData(completion: @escaping CompletionHandler){
-        guard let url = URL(string: baseURL + apiKey) else {
+    
+    func loadData(queryItem: URLQueryItem, completion: @escaping CompletionHandler){
+        guard var url = URL(string: baseURL) else {
             completion(.failure(.urlGeneration))
             return
         }
+        var queryItems: [URLQueryItem] = [URLQueryItem(name: apiKeyName, value: apiKeyValue)]
+        queryItems.append(queryItem)
+        url.appendQueryItems(with: queryItems)
         URLSession.shared.dataTask(with: url) { data, responce, error in
             
             if let error = error {
@@ -45,15 +50,29 @@ class NetworkCall {
                 completion(.failure(.dataError))
                 return
             }
-            if let movies = try? JSONDecoder().decode(MoviesResponce.self, from: data) {
+            if let result = try? JSONDecoder().decode(MoviesResponce.self, from: data) {
                 DispatchQueue.main.async {
-                    completion(.success(movies.modelMap()))
+                    completion(.success(result.modelMap()))
                 }
             } else {
                 completion(.failure(.decodeError))
             }
             
         }.resume()
+    }
+    
+    func loadImageData(imagePath: String, completion: @escaping (Data) -> Void){
+        if let url = URL(string: imageURL + imagePath) {
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                guard let data = data, error == nil else { return }
+                
+                DispatchQueue.main.async {
+                    completion(data)
+                }
+            }
+            
+            task.resume()
+        }
     }
     
     func handleNetworkError(error: Error) -> RequestError {
@@ -66,5 +85,18 @@ class NetworkCall {
         default: 
             return .generic(error)
         }
+    }
+}
+
+
+extension URL {
+    mutating func appendQueryItems(with queryItems: [URLQueryItem]){
+        
+        guard var urlComponents = URLComponents(string: absoluteString) else {return}
+        
+        var items: [URLQueryItem] = urlComponents.queryItems ?? []
+        items.append(contentsOf: queryItems)
+        urlComponents.queryItems = items
+        self = urlComponents.url!  
     }
 }

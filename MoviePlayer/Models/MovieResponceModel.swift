@@ -21,12 +21,12 @@ struct MoviesResponce: Decodable {
 
 extension MoviesResponce {
     struct MovieResponceModel: Decodable {
-        let originalTitle: String
-        let overview: String
-        let posterPath: String
-        let releaseDate: String
-        let backdropPath: String
-        let voteAverage: Double
+        let originalTitle: String?
+        let overview: String?
+        let posterPath: String?
+        let releaseDate: String?
+        let backdropPath: String?
+        let voteAverage: Double?
         
         private enum CodingKeys: String, CodingKey {
             case posterPath = "poster_path"

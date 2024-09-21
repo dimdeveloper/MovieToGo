@@ -64,7 +64,7 @@ private struct MovieInfoView: View {
                 .fontWeight(.semibold)
                 Text(movie.description)
                     .font(.custom("Raleway", fixedSize: 14))
-                Text("Release: " + movie.releaseDate)
+                Text("Release: " + (movie.releaseDate))
                     .font(.custom("Raleway", fixedSize: 14))
                     .foregroundColor(Color("MainAccentColor"))
                     .fontWeight(.semibold)
@@ -127,5 +127,5 @@ struct MoviewPreviewImage: View {
 }
 
 #Preview {
-    MovieDetailView(viewModel: MoviesViewModel(), movie: Movie(name: "Saving Bikini Bottom: The Sandy Cheeks Movie", description: "When Bikini Bottom is scooped from the ocean, scientific squirrel Sandy Cheeks and her pal SpongeBob SquarePants saddle up for Texas to save their town.", releaseDate: "2024-08-01", posterPath: "", backdropPath: "", voteAverage: "6.08"), image: nil)
+    MovieDetailView(viewModel: MoviesViewModel(), movie: Movie.mockMovie, image: nil)
 }

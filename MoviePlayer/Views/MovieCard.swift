@@ -71,5 +71,5 @@ private struct MovieImage: View {
 
 
 #Preview {
-    MovieCard(movie: Movie(name: "Saving Bikini Bottom: The Sandy Cheeks Movie", description: "When Bikini Bottom is scooped from the ocean, scientific squirrel Sandy Cheeks and her pal SpongeBob SquarePants saddle up for Texas to save their town.", releaseDate: "2024-08-01", posterPath: "", backdropPath: "", voteAverage: "6.08"), viewModel: MoviesViewModel())
+    MovieCard(movie: Movie.mockMovie, viewModel: MoviesViewModel())
 }

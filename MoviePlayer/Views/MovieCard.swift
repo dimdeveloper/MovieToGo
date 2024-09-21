@@ -24,10 +24,10 @@ struct MovieCard: View {
                         .font(.custom("Raleway", fixedSize: 14))
                         .fontWeight(.bold)
                     Text(movie.description)
-                        .font(.custom("Raleway", fixedSize: 14))
+                        .font(.custom("Raleway", fixedSize: 12))
                         .foregroundColor(Color.description)
-                    Text(movie.releaseDate)
-                        .font(.custom("Raleway", fixedSize: 14))
+                    Text("Release: \(movie.releaseDate)")
+                        .font(.custom("Raleway", fixedSize: 12))
                         .foregroundColor(Color.accent)
                         .fontWeight(.semibold)
                 }
@@ -71,5 +71,5 @@ private struct MovieImage: View {
 
 
 #Preview {
-    MovieCard(movie: Movie(name: "Saving Bikini Bottom: The Sandy Cheeks Movie", description: "When Bikini Bottom is scooped from the ocean, scientific squirrel Sandy Cheeks and her pal SpongeBob SquarePants saddle up for Texas to save their town.", releaseDate: "2024-08-01", posterPath: "", backdropPath: "", voteAverage: 6.08), viewModel: MoviesViewModel())
+    MovieCard(movie: Movie(name: "Saving Bikini Bottom: The Sandy Cheeks Movie", description: "When Bikini Bottom is scooped from the ocean, scientific squirrel Sandy Cheeks and her pal SpongeBob SquarePants saddle up for Texas to save their town.", releaseDate: "2024-08-01", posterPath: "", backdropPath: "", voteAverage: "6.08"), viewModel: MoviesViewModel())
 }

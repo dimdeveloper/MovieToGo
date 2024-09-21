@@ -47,14 +47,6 @@ struct MovieDetailView: View {
     }
 }
 
-private struct BackButton: View {
-    var body: some View {
-        Button("ku") {
-            
-        }
-    }
-}
-
 private struct MovieInfoView: View {
     @State var isAlertShow = false
     @Binding var image: Image?
@@ -112,7 +104,7 @@ struct MoviewPreviewImage: View {
                                 .font(.custom("Raleway", fixedSize: 16))
                                 .fontWeight(.bold)
                             Spacer()
-                            Text(String(movie.voteAverage))
+                            Text(movie.voteAverage)
                                 .foregroundColor(.white)
                                 .font(.custom("Raleway", fixedSize: 12))
                             Image("star")
@@ -129,11 +121,11 @@ struct MoviewPreviewImage: View {
                 
             }
         }
-        .frame(width: nil, height: 193)
+        .frame(maxWidth: 500)
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
 }
 
 #Preview {
-    MovieDetailView(viewModel: MoviesViewModel(), movie: Movie(name: "Saving Bikini Bottom: The Sandy Cheeks Movie", description: "When Bikini Bottom is scooped from the ocean, scientific squirrel Sandy Cheeks and her pal SpongeBob SquarePants saddle up for Texas to save their town.", releaseDate: "2024-08-01", posterPath: "", backdropPath: "", voteAverage: 6.08), image: nil)
+    MovieDetailView(viewModel: MoviesViewModel(), movie: Movie(name: "Saving Bikini Bottom: The Sandy Cheeks Movie", description: "When Bikini Bottom is scooped from the ocean, scientific squirrel Sandy Cheeks and her pal SpongeBob SquarePants saddle up for Texas to save their town.", releaseDate: "2024-08-01", posterPath: "", backdropPath: "", voteAverage: "6.08"), image: nil)
 }

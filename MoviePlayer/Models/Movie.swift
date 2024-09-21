@@ -14,7 +14,7 @@ struct Movie: Identifiable, Codable {
     let releaseDate: String
     let posterPath: String
     let backdropPath: String
-    let voteAverage: Double
+    let voteAverage: String
 }
 
 extension Movie {

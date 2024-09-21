@@ -19,7 +19,7 @@ enum RequestError: Error {
 
 class NetworkCall {
     
-    typealias CompletionHandler = (Result<[Movie], RequestError>) -> Void
+    typealias CompletionHandler = (Result<MoviesResponce, RequestError>) -> Void
     
     let baseURL = "https://api.themoviedb.org/3/movie/popular"
     var imageURL = "https://image.tmdb.org/t/p/w500/"
@@ -45,6 +45,7 @@ class NetworkCall {
                     requestError = self.handleNetworkError(error: error)
                 }
                 completion(.failure(requestError))
+                return
             }
             guard let data = data else {
                 completion(.failure(.dataError))
@@ -52,7 +53,7 @@ class NetworkCall {
             }
             if let result = try? JSONDecoder().decode(MoviesResponce.self, from: data) {
                 DispatchQueue.main.async {
-                    completion(.success(result.modelMap()))
+                    completion(.success(result))
                 }
             } else {
                 completion(.failure(.decodeError))
@@ -65,7 +66,6 @@ class NetworkCall {
         if let url = URL(string: imageURL + imagePath) {
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 guard let data = data, error == nil else { return }
-                
                 DispatchQueue.main.async {
                     completion(data)
                 }

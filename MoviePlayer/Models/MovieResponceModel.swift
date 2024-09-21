@@ -38,17 +38,3 @@ extension MoviesResponce {
         }
     }
 }
-
-// MARK: Mapping to entity model
-
-extension MoviesResponce {
-    func modelMap() -> [Movie] {
-        var movies: [Movie] = []
-        print("Total pages is \(self.totalPages), current page is \(self.page)")
-        results.forEach { result in
-            let movie = Movie(name: result.originalTitle, description: result.overview, releaseDate: result.releaseDate, posterPath: result.posterPath, backdropPath: result.backdropPath, voteAverage: result.voteAverage)
-            movies.append(movie)
-        }
-        return movies
-    }
-}

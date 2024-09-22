@@ -8,20 +8,39 @@
 import Foundation
 import UIKit
 
-enum LoadState {
-    case isLoading
-    case notLoading
+enum ErrorMessage: String {
+    case networkErrorMessage = "Network Error"
+    case responceErrorMessage = "Error getting data"
+    
+    static var networkError: String {
+        ErrorMessage.networkErrorMessage.rawValue
+    }
+    static var responceError: String {
+        ErrorMessage.responceErrorMessage.rawValue
+    }
 }
 
 class MoviesViewModel: ObservableObject {
     
-    var loadState: LoadState = .isLoading
+    @Published var showAlert = false
     @Published var movies: [Movie] = []
+    @Published var isLoading: Bool = false
     
-    let networkManager = NetworkCall()
-    var currentMoviesPage = 1
-    var pagesCount = 1
-    var errorMessage: String = ""
+    var errorMessage: String = "" {
+        didSet {
+            showAlert = !errorMessage.isEmpty
+        }
+    }
+    
+    var networkManager: NetworkManager
+    var currentMoviesPage: Int
+    var pagesCount: Int
+    
+    init(networkManager: NetworkManager) {
+        self.networkManager = networkManager
+        self.currentMoviesPage = 1
+        self.pagesCount = 1
+    }
     
     func loadImage(imagePath: String?, completion: @escaping (Data) -> Void) {
         guard let path = imagePath else {return}
@@ -51,18 +70,22 @@ class MoviesViewModel: ObservableObject {
     
     private func requestErrorHandling(error: RequestError){
         switch error {
-        case .error(statusCode: let statusCode, data: let _):
+        case .error(statusCode: let statusCode, data: let data):
             self.errorMessage = HTTPURLResponse.localizedString(forStatusCode: statusCode)
-        case .notConnected, .generic(_):
-            self.errorMessage = "Network Error"
+            //  log
+        case .notConnected:
+            self.errorMessage = ErrorMessage.networkError
         case .urlGeneration:
-            self.errorMessage = "Invalid URL"
+            self.errorMessage = ErrorMessage.responceError
         case .cancelled:
             break
         case .dataError:
-            self.errorMessage = "Invalid data responce"
+            self.errorMessage = ErrorMessage.responceError
         case .decodeError:
-            self.errorMessage = "Invalid data decode"
+            self.errorMessage = ErrorMessage.responceError
+        case .generic(_):
+            self.errorMessage = ErrorMessage.responceError
+            // log
         }
     }
 }

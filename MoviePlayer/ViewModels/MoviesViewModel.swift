@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import os
 
 enum ErrorMessage: String {
     case networkErrorMessage = "Network Error"
@@ -21,6 +22,8 @@ enum ErrorMessage: String {
 }
 
 class MoviesViewModel: ObservableObject {
+    
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: String(describing: MoviesViewModel.self))
     
     @Published var showAlert = false
     @Published var movies: [Movie] = []
@@ -63,6 +66,7 @@ class MoviesViewModel: ObservableObject {
                 } else {
                     self.movies.append(contentsOf: fetchedMovies)
                 }
+                self.logger.info("movies fetched successfully")
                 self.errorMessage = ""
                 
             case .failure(let error):
@@ -76,22 +80,25 @@ class MoviesViewModel: ObservableObject {
     private func requestErrorHandling(error: RequestError) {
         switch error {
         case .error(statusCode: let statusCode, data: let data):
-            self.errorMessage = HTTPURLResponse.localizedString(forStatusCode: statusCode)
+            self.logger.error("\(HTTPURLResponse.localizedString(forStatusCode: statusCode))")
         case .notConnected:
             self.errorMessage = ErrorMessage.networkError
+            self.logger.error("Invalid network connection")
         case .urlGeneration:
             self.errorMessage = ErrorMessage.responceError
+            self.logger.error("Invalid URL")
         case .dataError:
             self.errorMessage = ErrorMessage.responceError
+            self.logger.error("Error data retreiving")
         case .decodeError:
             self.errorMessage = ErrorMessage.responceError
+            self.logger.error("Invalid data decoding")
         case .generic(_):
             self.errorMessage = ErrorMessage.responceError
+            self.logger.error("Generic error")
         }
     }
 }
-
-// MARK: Mapping to entity model
 
 extension MoviesViewModel {
     

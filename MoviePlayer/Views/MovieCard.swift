@@ -54,16 +54,17 @@ private struct MovieImage: View {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
+                    .frame(width: 128, height: 188)
+                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
             } else {
                 Image(systemName: "photo")
                     .resizable()
                     .scaledToFit()
                     .foregroundColor(.gray)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(width: 128)
             }
         }
-        .frame(width: 128, height: 188)
-        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        
     }
 }
 

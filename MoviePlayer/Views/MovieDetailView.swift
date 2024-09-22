@@ -43,27 +43,51 @@ struct MovieDetailView: View {
 
 private struct MovieInfoView: View {
     
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     @State var isAlertShow = false
     @Binding var image: Image?
     
     var movie: Movie
     
     var body: some View {
-        VStack(spacing: 20){
-            MoviewPreviewImage(image: $image, movie: movie)
-                .onTapGesture {
-                    isAlertShow = true
+        
+        ZStack {
+            if verticalSizeClass == .regular {
+                VStack(spacing: 20){
+                    MoviewPreviewImage(image: $image, movie: movie)
+                        .onTapGesture {
+                            isAlertShow = true
+                        }
+                    VStack(alignment: .leading, spacing: 20) {
+                        Text("Description:")
+                            .font(.custom("Raleway", fixedSize: 16))
+                            .fontWeight(.semibold)
+                        Text(movie.description)
+                            .font(.custom("Raleway", fixedSize: 14))
+                        Text("Release: " + (movie.releaseDate))
+                            .font(.custom("Raleway", fixedSize: 14))
+                            .foregroundColor(Color("MainAccentColor"))
+                            .fontWeight(.semibold)
+                    }
                 }
-            VStack(alignment: .leading, spacing: 20) {
-                Text("Description:")
-                    .font(.custom("Raleway", fixedSize: 16))
-                .fontWeight(.semibold)
-                Text(movie.description)
-                    .font(.custom("Raleway", fixedSize: 14))
-                Text("Release: " + (movie.releaseDate))
-                    .font(.custom("Raleway", fixedSize: 14))
-                    .foregroundColor(Color("MainAccentColor"))
-                    .fontWeight(.semibold)
+            } else {
+                HStack(alignment: .top) {
+                    MoviewPreviewImage(image: $image, movie: movie)
+                        .onTapGesture {
+                            isAlertShow = true
+                        }
+                    VStack(alignment: .leading, spacing: 20) {
+                        Text("Description:")
+                            .font(.custom("Raleway", fixedSize: 16))
+                            .fontWeight(.semibold)
+                        Text(movie.description)
+                            .font(.custom("Raleway", fixedSize: 14))
+                        Text("Release: " + (movie.releaseDate))
+                            .font(.custom("Raleway", fixedSize: 14))
+                            .foregroundColor(Color("MainAccentColor"))
+                            .fontWeight(.semibold)
+                    }
+                }
             }
         }
         .padding()
@@ -111,7 +135,7 @@ private struct MoviewPreviewImage: View {
                     .resizable()
                     .scaledToFit()
                     .foregroundColor(.gray)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(maxWidth: 300, maxHeight: .infinity)
             }
         }
         .frame(maxWidth: 500)

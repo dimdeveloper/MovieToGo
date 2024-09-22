@@ -10,6 +10,7 @@ import SwiftUI
 struct MovieCard: View {
     
     @State var image: Image?
+    
     var movie: Movie
     var viewModel: MoviesViewModel
     
@@ -17,7 +18,7 @@ struct MovieCard: View {
         ZStack {
             HStack(alignment: .top) {
                
-                    MovieImage(image: image)
+                MovieImage(image: image)
                 
                 VStack(alignment: .leading, spacing: 12) {
                     Text(movie.name)
@@ -39,8 +40,6 @@ struct MovieCard: View {
                 }
             }
         }
-        
-        
         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
     }
 }
@@ -67,7 +66,6 @@ private struct MovieImage: View {
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
 }
-
 
 
 #Preview {

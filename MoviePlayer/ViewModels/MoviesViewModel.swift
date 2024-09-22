@@ -24,7 +24,6 @@ class MoviesViewModel: ObservableObject {
     
     @Published var showAlert = false
     @Published var movies: [Movie] = []
-    @Published var isLoading: Bool = false
     
     var errorMessage: String = "" {
         didSet {
@@ -52,9 +51,9 @@ class MoviesViewModel: ObservableObject {
     func fetchMovies() {
         let pageQuery = URLQueryItem(name: "page", value: String(currentMoviesPage))
         networkManager.loadData(queryItem: pageQuery) { responce in
+            
             switch responce {
             case .success(let result):
-                
                 let fetchedMovies = self.modelMap(fetchResult: result)
                 if self.movies.isEmpty {
                     self.movies = fetchedMovies
@@ -68,24 +67,20 @@ class MoviesViewModel: ObservableObject {
         }
     }
     
-    private func requestErrorHandling(error: RequestError){
+    private func requestErrorHandling(error: RequestError) {
         switch error {
         case .error(statusCode: let statusCode, data: let data):
             self.errorMessage = HTTPURLResponse.localizedString(forStatusCode: statusCode)
-            //  log
         case .notConnected:
             self.errorMessage = ErrorMessage.networkError
         case .urlGeneration:
             self.errorMessage = ErrorMessage.responceError
-        case .cancelled:
-            break
         case .dataError:
             self.errorMessage = ErrorMessage.responceError
         case .decodeError:
             self.errorMessage = ErrorMessage.responceError
         case .generic(_):
             self.errorMessage = ErrorMessage.responceError
-            // log
         }
     }
 }
@@ -93,10 +88,12 @@ class MoviesViewModel: ObservableObject {
 // MARK: Mapping to entity model
 
 extension MoviesViewModel {
+    
     func modelMap(fetchResult: MoviesResponce) -> [Movie] {
         var movies: [Movie] = []
         self.currentMoviesPage = fetchResult.page
         self.pagesCount = fetchResult.totalPages
+        
         fetchResult.results.forEach { result in
             let movieName = result.originalTitle ?? "Undefined"
             let description = result.overview ?? "..."

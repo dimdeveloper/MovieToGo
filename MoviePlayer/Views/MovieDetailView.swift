@@ -10,46 +10,42 @@ import SwiftUI
 struct MovieDetailView: View {
     
     @Environment(\.dismiss) var dismiss
+    @State var image: Image?
+    
     var viewModel: MoviesViewModel
     var movie: Movie
-    @State var image: Image?
     
     var body: some View {
 
-            ScrollView {
-                MovieInfoView(image: $image, movie: movie)
+        ScrollView {
+            MovieInfoView(image: $image, movie: movie)
+        }
+        .onAppear {
+            viewModel.loadImage(imagePath: movie.backdropPath) { data in
+                guard let image = UIImage(data: data) else {return}
+                self.image = Image(uiImage: image)
             }
-            .onAppear {
-                viewModel.loadImage(imagePath: movie.backdropPath) { data in
-                    guard let image = UIImage(data: data) else {return}
-                    self.image = Image(uiImage: image)
+        }
+        .navigationBarBackButtonHidden(true)
+        .toolbar(content: {
+            ToolbarItem(placement: .navigation) {
+                Button(action: {dismiss()}){
+                    Image("BackButton")
                 }
             }
-            .navigationBarBackButtonHidden(true)
-            .toolbar(content: {
-                ToolbarItem(placement: .navigation) {
-                    Button(action: {
-                        dismiss()
-                    }){
-                        Image("BackButton")
-                    }
-                    
-                }
-                
-                ToolbarItem(placement: .principal) {
-                
-                                        Image("Logo")
-                
-                                }
-            })
-        
-        
+            
+            ToolbarItem(placement: .principal) {
+                Image("Logo")
+            }
+        })
     }
 }
 
 private struct MovieInfoView: View {
+    
     @State var isAlertShow = false
     @Binding var image: Image?
+    
     var movie: Movie
     
     var body: some View {
@@ -69,8 +65,6 @@ private struct MovieInfoView: View {
                     .foregroundColor(Color("MainAccentColor"))
                     .fontWeight(.semibold)
             }
-           
-                
         }
         .padding()
         .alert(isPresented: $isAlertShow, content: {
@@ -82,8 +76,8 @@ private struct MovieInfoView: View {
 struct MoviewPreviewImage: View {
     
     @Binding var image: Image?
+    
     var movie: Movie
-    var imageURL = "https://image.tmdb.org/t/p/w500/"
     
     var body: some View {
         VStack{
@@ -118,7 +112,6 @@ struct MoviewPreviewImage: View {
                     .scaledToFit()
                     .foregroundColor(.gray)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
             }
         }
         .frame(maxWidth: 500)
@@ -127,5 +120,5 @@ struct MoviewPreviewImage: View {
 }
 
 #Preview {
-    MovieDetailView(viewModel: MoviesViewModel(networkManager: NetworkManager()), movie: Movie.mockMovie, image: nil)
+    MovieDetailView(image: nil, viewModel: MoviesViewModel(networkManager: NetworkManager()), movie: Movie.mockMovie)
 }

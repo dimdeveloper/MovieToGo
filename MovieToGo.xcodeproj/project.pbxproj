@@ -108,9 +108,9 @@
 				30B0FC4D2C9AE951004B63F4 /* ContentView.swift */,
 				30B0FC5D2C9AE9E8004B63F4 /* TabBar.swift */,
 				30B0FC5F2C9AEA06004B63F4 /* MovieList.swift */,
+				300E30F32C9C5A8600862A37 /* MovieCard.swift */,
 				30B0FC612C9AEA3D004B63F4 /* MovieDetailView.swift */,
 				30B0FC632C9AEAAC004B63F4 /* FavouriteMoviesView.swift */,
-				300E30F32C9C5A8600862A37 /* MovieCard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

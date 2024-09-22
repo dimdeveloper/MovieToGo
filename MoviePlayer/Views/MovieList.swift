@@ -11,7 +11,6 @@ struct MovieList: View {
     
     @StateObject var viewModel = MoviesViewModel(networkManager: NetworkManager())
     
-    
     var body: some View {
         
         ZStack {
@@ -27,9 +26,11 @@ struct MovieList: View {
                     NavigationView {
                         VStack {
                             List(viewModel.movies) { movie in
+                                
                                 MovieCard(movie: movie, viewModel: viewModel)
                                     .overlay(NavigationLink(destination: MovieDetailView(viewModel: viewModel, movie: movie)) {
                                     }.fixedSize().opacity(0.0))
+                                
                                 if viewModel.movies.last?.id == movie.id {
                                     if viewModel.currentMoviesPage < viewModel.pagesCount {
                                         LastRowListView(viewModel: viewModel)
@@ -82,12 +83,12 @@ struct LastRowListView: View {
 }
 
 struct ActivityIndicator: View {
+    
     var tintColor: Color = .orange
     
     var body: some View {
         ProgressView()
             .progressViewStyle(CircularProgressViewStyle(tint: tintColor))
-            .scaleEffect(1)
     }
 }
     

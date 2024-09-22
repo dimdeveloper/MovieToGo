@@ -12,7 +12,6 @@ enum RequestError: Error {
     case notConnected
     case generic(Error)
     case urlGeneration
-    case cancelled
     case dataError
     case decodeError
 }
@@ -20,10 +19,8 @@ enum RequestError: Error {
 class NetworkManager {
     
     typealias CompletionHandler = (Result<MoviesResponce, RequestError>) -> Void
-    
 
     let apiKeyName = "api_key"
-    
     let appConfig = AppConfig()
     
     func loadData(queryItem: URLQueryItem, completion: @escaping CompletionHandler){
@@ -31,11 +28,12 @@ class NetworkManager {
             completion(.failure(.urlGeneration))
             return
         }
+        
         var queryItems: [URLQueryItem] = [URLQueryItem(name: apiKeyName, value: appConfig.apiKey)]
         queryItems.append(queryItem)
         url.appendQueryItems(with: queryItems)
+        
         URLSession.shared.dataTask(with: url) { data, responce, error in
-            
             if let error = error {
                 var requestError: RequestError
                 if let responce = responce as? HTTPURLResponse {
@@ -69,18 +67,16 @@ class NetworkManager {
                     completion(data)
                 }
             }
-            
             task.resume()
         }
     }
     
     func handleNetworkError(error: Error) -> RequestError {
         let errorCode = URLError.Code(rawValue: (error as NSError).code)
+        
         switch errorCode {
         case .notConnectedToInternet: 
             return .notConnected
-        case .cancelled: 
-            return .cancelled
         default: 
             return .generic(error)
         }
@@ -89,8 +85,7 @@ class NetworkManager {
 
 
 extension URL {
-    mutating func appendQueryItems(with queryItems: [URLQueryItem]){
-        
+    mutating func appendQueryItems(with queryItems: [URLQueryItem]) {
         guard var urlComponents = URLComponents(string: absoluteString) else {return}
         
         var items: [URLQueryItem] = urlComponents.queryItems ?? []

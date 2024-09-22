@@ -71,7 +71,7 @@ class NetworkManager {
         }
     }
     
-    func handleNetworkError(error: Error) -> RequestError {
+    private func handleNetworkError(error: Error) -> RequestError {
         let errorCode = URLError.Code(rawValue: (error as NSError).code)
         
         switch errorCode {

@@ -14,50 +14,62 @@ struct MovieList: View {
     var body: some View {
         
         ZStack {
-            //            VStack {
-            //                Image("wifi.exclamationmark")
-            //                    .foregroundColor(Color.accent)
-            //                Text("No internet connection!")
-            //            }
-            VStack {
-                if viewModel.movies.isEmpty {
-                    ActivityIndicator()
-                } else {
-                    NavigationView {
-                        VStack {
-                            List(viewModel.movies) { movie in
-                                
-                                MovieCard(movie: movie, viewModel: viewModel)
-                                    .overlay(NavigationLink(destination: MovieDetailView(viewModel: viewModel, movie: movie)) {
-                                    }.fixedSize().opacity(0.0))
-                                
-                                if viewModel.movies.last?.id == movie.id {
-                                    if viewModel.currentMoviesPage < viewModel.pagesCount {
-                                        LastRowListView(viewModel: viewModel)
+            if !viewModel.errorMessage.isEmpty && viewModel.movies.isEmpty {
+                VStack(spacing: 30) {
+                    Image(systemName: "wifi.exclamationmark")
+                        .foregroundColor(Color.accent)
+                        .scaleEffect(2)
+                    Text(viewModel.errorMessage)
+                    
+                    Button("Update") {
+                        viewModel.errorMessage = ""
+                        viewModel.update.toggle()
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
+            } else {
+                VStack {
+                    if viewModel.movies.isEmpty {
+                        ActivityIndicator()
+                    } else {
+                        NavigationView {
+                            VStack {
+                                List(viewModel.movies) { movie in
+                                    
+                                    MovieCard(movie: movie, viewModel: viewModel)
+                                        .overlay(NavigationLink(destination: MovieDetailView(viewModel: viewModel, movie: movie)) {
+                                        }.fixedSize().opacity(0.0))
+                                    
+                                    if viewModel.movies.last?.id == movie.id {
+                                        if viewModel.currentMoviesPage < viewModel.pagesCount {
+                                            LastRowListView(viewModel: viewModel)
+                                        }
+                                    }
+                                }
+                            }
+                            .navigationBarTitleDisplayMode(.inline)
+                            .toolbar {
+                                ToolbarItem(placement: .principal) {
+                                    VStack {
+                                        Spacer()
+                                        Image("Logo")
                                     }
                                 }
                             }
                         }
-                        .navigationBarTitleDisplayMode(.inline)
-                        .toolbar {
-                            ToolbarItem(placement: .principal) {
-                                VStack {
-                                    Spacer()
-                                    Image("Logo")
-                                }
-                            }
-                        }
+                        .listRowSpacing(20)
                     }
-                    .listRowSpacing(20)
+                    
                 }
-                
+                .alert(Text(viewModel.errorMessage), isPresented: $viewModel.showAlert) {
+                    Button("OK") {  }
+                }
+                .onAppear(){
+                    viewModel.fetchMovies()
+                }
             }
-            .alert(Text(viewModel.errorMessage), isPresented: $viewModel.showAlert) {
-                Button("OK") { viewModel.errorMessage = "" }
-            }
-            .onAppear(){
-                viewModel.fetchMovies()
-            }
+            
+            
         }
     }
 }

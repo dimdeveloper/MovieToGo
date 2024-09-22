@@ -73,7 +73,7 @@ private struct MovieInfoView: View {
     }
 }
 
-struct MoviewPreviewImage: View {
+private struct MoviewPreviewImage: View {
     
     @Binding var image: Image?
     

@@ -71,5 +71,5 @@ private struct MovieImage: View {
 
 
 #Preview {
-    MovieCard(movie: Movie.mockMovie, viewModel: MoviesViewModel())
+    MovieCard(movie: Movie.mockMovie, viewModel: MoviesViewModel(networkManager: NetworkManager()))
 }

@@ -17,22 +17,21 @@ enum RequestError: Error {
     case decodeError
 }
 
-class NetworkCall {
+class NetworkManager {
     
     typealias CompletionHandler = (Result<MoviesResponce, RequestError>) -> Void
     
-    let baseURL = "https://api.themoviedb.org/3/movie/popular"
-    var imageURL = "https://image.tmdb.org/t/p/w500/"
+
     let apiKeyName = "api_key"
-    let apiKeyValue = "ed0957c3c3f2acb89d27b394e9612d5e"
     
+    let appConfig = AppConfig()
     
     func loadData(queryItem: URLQueryItem, completion: @escaping CompletionHandler){
-        guard var url = URL(string: baseURL) else {
+        guard var url = URL(string: appConfig.baseURL) else {
             completion(.failure(.urlGeneration))
             return
         }
-        var queryItems: [URLQueryItem] = [URLQueryItem(name: apiKeyName, value: apiKeyValue)]
+        var queryItems: [URLQueryItem] = [URLQueryItem(name: apiKeyName, value: appConfig.apiKey)]
         queryItems.append(queryItem)
         url.appendQueryItems(with: queryItems)
         URLSession.shared.dataTask(with: url) { data, responce, error in
@@ -63,7 +62,7 @@ class NetworkCall {
     }
     
     func loadImageData(imagePath: String, completion: @escaping (Data) -> Void){
-        if let url = URL(string: imageURL + imagePath) {
+        if let url = URL(string: appConfig.imageURL + imagePath) {
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 guard let data = data, error == nil else { return }
                 DispatchQueue.main.async {

@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct MovieList: View {
-    @StateObject var viewModel = MoviesViewModel()
-    @State var isLoading = true
-    @State var isAlertShow = false
+    
+    @StateObject var viewModel = MoviesViewModel(networkManager: NetworkManager())
+    
     
     var body: some View {
         
         ZStack {
-//            VStack {
-//                Image("wifi.exclamationmark")
-//                    .foregroundColor(Color.accent)
-//                Text("No internet connection!")
-//            }
+            //            VStack {
+            //                Image("wifi.exclamationmark")
+            //                    .foregroundColor(Color.accent)
+            //                Text("No internet connection!")
+            //            }
             VStack {
                 if viewModel.movies.isEmpty {
                     ActivityIndicator()
@@ -51,12 +51,12 @@ struct MovieList: View {
                 }
                 
             }
-            .alert(isPresented: $isAlertShow) {
-                Alert(title: Text(viewModel.errorMessage))
+            .alert(Text(viewModel.errorMessage), isPresented: $viewModel.showAlert) {
+                Button("OK") { viewModel.errorMessage = "" }
             }
-        }
-        .onAppear(){
-            viewModel.fetchMovies()
+            .onAppear(){
+                viewModel.fetchMovies()
+            }
         }
     }
 }
@@ -87,6 +87,7 @@ struct ActivityIndicator: View {
     var body: some View {
         ProgressView()
             .progressViewStyle(CircularProgressViewStyle(tint: tintColor))
+            .scaleEffect(1)
     }
 }
     

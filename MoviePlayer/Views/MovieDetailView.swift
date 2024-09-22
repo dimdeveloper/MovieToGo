@@ -127,5 +127,5 @@ struct MoviewPreviewImage: View {
 }
 
 #Preview {
-    MovieDetailView(viewModel: MoviesViewModel(), movie: Movie.mockMovie, image: nil)
+    MovieDetailView(viewModel: MoviesViewModel(networkManager: NetworkManager()), movie: Movie.mockMovie, image: nil)
 }

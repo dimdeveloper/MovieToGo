@@ -10,6 +10,7 @@
 		300E30F42C9C5A8600862A37 /* MovieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E30F32C9C5A8600862A37 /* MovieCard.swift */; };
 		302600452CA0506800C8AE34 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 302600442CA0506800C8AE34 /* Config.plist */; };
 		302600472CA051F000C8AE34 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302600462CA051F000C8AE34 /* AppConfig.swift */; };
+		3056E5172CA0E34900F1615C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3056E5162CA0E34900F1615C /* Launch Screen.storyboard */; };
 		30B0FC4C2C9AE951004B63F4 /* MoviePlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B0FC4B2C9AE951004B63F4 /* MoviePlayerApp.swift */; };
 		30B0FC4E2C9AE951004B63F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B0FC4D2C9AE951004B63F4 /* ContentView.swift */; };
 		30B0FC502C9AE954004B63F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30B0FC4F2C9AE954004B63F4 /* Assets.xcassets */; };
@@ -28,6 +29,8 @@
 		300E30F32C9C5A8600862A37 /* MovieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCard.swift; sourceTree = "<group>"; };
 		302600442CA0506800C8AE34 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		302600462CA051F000C8AE34 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		3056E5152CA0E06800F1615C /* MovieToGo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "MovieToGo-Info.plist"; sourceTree = "<group>"; };
+		3056E5162CA0E34900F1615C /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		30B0FC482C9AE951004B63F4 /* MovieToGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieToGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B0FC4B2C9AE951004B63F4 /* MoviePlayerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePlayerApp.swift; sourceTree = "<group>"; };
 		30B0FC4D2C9AE951004B63F4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +60,7 @@
 		30B0FC3F2C9AE951004B63F4 = {
 			isa = PBXGroup;
 			children = (
+				3056E5152CA0E06800F1615C /* MovieToGo-Info.plist */,
 				30B0FC4A2C9AE951004B63F4 /* MoviePlayer */,
 				30B0FC492C9AE951004B63F4 /* Products */,
 			);
@@ -81,6 +85,7 @@
 				30B0FC4F2C9AE954004B63F4 /* Assets.xcassets */,
 				30B0FC512C9AE954004B63F4 /* Preview Content */,
 				302600442CA0506800C8AE34 /* Config.plist */,
+				3056E5162CA0E34900F1615C /* Launch Screen.storyboard */,
 			);
 			path = MoviePlayer;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 			files = (
 				30B0FC532C9AE954004B63F4 /* Preview Assets.xcassets in Resources */,
 				302600452CA0506800C8AE34 /* Config.plist in Resources */,
+				3056E5172CA0E34900F1615C /* Launch Screen.storyboard in Resources */,
 				30B0FC502C9AE954004B63F4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,9 +357,10 @@
 				DEVELOPMENT_TEAM = 9CF2F932U3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MovieToGo-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -381,9 +388,10 @@
 				DEVELOPMENT_TEAM = 9CF2F932U3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MovieToGo-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

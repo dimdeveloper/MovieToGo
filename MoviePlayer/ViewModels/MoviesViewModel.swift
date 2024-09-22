@@ -25,9 +25,12 @@ class MoviesViewModel: ObservableObject {
     @Published var showAlert = false
     @Published var movies: [Movie] = []
     
+    
     var errorMessage: String = "" {
         didSet {
-            showAlert = !errorMessage.isEmpty
+            if oldValue.isEmpty && !errorMessage.isEmpty {
+                showAlert = true
+            }
         }
     }
     
@@ -60,9 +63,12 @@ class MoviesViewModel: ObservableObject {
                 } else {
                     self.movies.append(contentsOf: fetchedMovies)
                 }
+                self.errorMessage = ""
                 
             case .failure(let error):
-                self.requestErrorHandling(error: error)
+                DispatchQueue.main.async {
+                    self.requestErrorHandling(error: error)
+                } 
             }
         }
     }
@@ -89,7 +95,7 @@ class MoviesViewModel: ObservableObject {
 
 extension MoviesViewModel {
     
-    func modelMap(fetchResult: MoviesResponce) -> [Movie] {
+    private func modelMap(fetchResult: MoviesResponce) -> [Movie] {
         var movies: [Movie] = []
         self.currentMoviesPage = fetchResult.page
         self.pagesCount = fetchResult.totalPages

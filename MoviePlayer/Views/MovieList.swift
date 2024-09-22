@@ -23,7 +23,7 @@ struct MovieList: View {
                     
                     Button("Update") {
                         viewModel.errorMessage = ""
-                        viewModel.update.toggle()
+                        viewModel.fetchMovies()
                     }
                     .buttonStyle(.borderedProminent)
                 }
@@ -61,9 +61,6 @@ struct MovieList: View {
                     }
                     
                 }
-                .alert(Text(viewModel.errorMessage), isPresented: $viewModel.showAlert) {
-                    Button("OK") {  }
-                }
                 .onAppear(){
                     viewModel.fetchMovies()
                 }
@@ -71,6 +68,9 @@ struct MovieList: View {
             
             
         }
+        .alert(Text(viewModel.errorMessage), isPresented: $viewModel.showAlert) {
+                Button("OK") {}
+            }
     }
 }
 

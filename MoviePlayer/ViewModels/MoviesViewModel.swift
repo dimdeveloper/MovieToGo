@@ -65,7 +65,7 @@ class MoviesViewModel: ObservableObject {
                 } else {
                     self.movies.append(contentsOf: fetchedMovies)
                 }
-                self.logger.info("movies fetched successfully")
+                self.logger.info("\(LoggerMessages.fetchSucess)")
                 self.errorMessage = ""
                 
             case .failure(let error):
@@ -78,23 +78,23 @@ class MoviesViewModel: ObservableObject {
     
     private func requestErrorHandling(error: RequestError) {
         switch error {
-        case .error(statusCode: let statusCode, data: let data):
+        case .error(statusCode: let statusCode, data: _):
             self.logger.error("\(HTTPURLResponse.localizedString(forStatusCode: statusCode))")
         case .notConnected:
             self.errorMessage = ErrorMessage.networkError
-            self.logger.error("Invalid network connection")
+            self.logger.error("\(LoggerMessages.connectionError)")
         case .urlGeneration:
             self.errorMessage = ErrorMessage.responceError
-            self.logger.error("Invalid URL")
+            self.logger.error("\(LoggerMessages.urlError)")
         case .dataError:
             self.errorMessage = ErrorMessage.responceError
-            self.logger.error("Error data retreiving")
+            self.logger.error("\(LoggerMessages.dataRetreiveError)")
         case .decodeError:
             self.errorMessage = ErrorMessage.responceError
-            self.logger.error("Invalid data decoding")
+            self.logger.error("\(LoggerMessages.dataDecodeError)")
         case .generic(_):
             self.errorMessage = ErrorMessage.responceError
-            self.logger.error("Generic error")
+            self.logger.error("\(LoggerMessages.genericError)")
         }
     }
 }
@@ -107,12 +107,12 @@ extension MoviesViewModel {
         self.pagesCount = fetchResult.totalPages
         
         fetchResult.results.forEach { result in
-            let movieName = result.originalTitle ?? "Undefined"
-            let description = result.overview ?? "..."
+            let movieName = result.originalTitle ?? Defaults.name
+            let description = result.overview ?? Defaults.description
             let posterPath = result.posterPath
             let backdropPath = result.backdropPath
-            let voteGrade = result.voteAverage != nil ? String(format: "%.1f", result.voteAverage!) : "-"
-            let dateString = result.releaseDate != nil ? formatDate(from: result.releaseDate!) : "--/--/--"
+            let voteGrade = result.voteAverage != nil ? String(format: "%.1f", result.voteAverage!) : Defaults.voteGrade
+            let dateString = result.releaseDate != nil ? formatDate(from: result.releaseDate!) : Defaults.date
             let movie = Movie(name: movieName, description: description, releaseDate: dateString, posterPath: posterPath, backdropPath: backdropPath, voteAverage: voteGrade)
             movies.append(movie)
         }
@@ -122,7 +122,7 @@ extension MoviesViewModel {
     private func formatDate(from dateString: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyy-MM-dd"
-        let date = dateFormatter.date(from: dateString)!
+        guard let date = dateFormatter.date(from: dateString) else {return Defaults.date}
         dateFormatter.dateFormat = "dd.MM.yyyy"
         return dateFormatter.string(from: date)
     }

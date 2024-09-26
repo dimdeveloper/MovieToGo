@@ -91,6 +91,8 @@ extension URL {
         var items: [URLQueryItem] = urlComponents.queryItems ?? []
         items.append(contentsOf: queryItems)
         urlComponents.queryItems = items
-        self = urlComponents.url!  
+        if let url = urlComponents.url {
+            self = url
+        }
     }
 }

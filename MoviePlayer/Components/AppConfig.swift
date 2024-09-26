@@ -18,7 +18,9 @@ final class AppConfig {
     let config: Config?
     
     init(){
-        let url = Bundle.main.url(forResource: "Config", withExtension: "plist")!
+        guard let url = Bundle.main.url(forResource: "Config", withExtension: "plist") else {
+            fatalError("Error finding Config file")
+        }
         do {
             let data = try Data(contentsOf: url)
             config = try PropertyListDecoder().decode(Config.self, from: data)

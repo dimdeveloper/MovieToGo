@@ -9,27 +9,57 @@ import SwiftUI
 
 struct TabBar: View {
     
+    @State var selection = 0
+    
+    init(){
+        UITabBar.appearance().unselectedItemTintColor = UIColor(Color(.greyInactive))
+    }
+    
     var body: some View {
-        TabView {
+        TabView(selection: $selection) {
             MovieList()
                 .tabItem {
-                    Label("Home", systemImage: "house")
-                }
+                    if selection == 0 {
+                        Label(
+                            title: { Text("Home")
+                                    .font(.custom(Fonts.sfProTextMedium, size: 10))
+                            },
+                            icon: { Image(ImageNames.activeHome)
+                            }
+                        )
+                    } else {
+                        Label(
+                            title: { Text("Home")
+                                    .font(.custom(Fonts.sfProTextMedium, size: 10))
+                            },
+                            icon: { Image(ImageNames.inactiveHome)
+                            }
+                        )
+                    }
+                   
+                }.tag(0)
             FavouriteMoviesView()
                 .tabItem {
-                    Label("Favourite", systemImage: "star")
-                }
+                    if selection == 1 {
+                        Label(
+                            title: { Text("Favourite")
+                                    .font(.custom(Fonts.sfProTextMedium, size: 10))
+                            },
+                            icon: { Image(ImageNames.activeFavourite)
+                            }
+                        )
+                    } else {
+                        Label(
+                            title: { Text("Favourite")
+                                    .font(.custom(Fonts.sfProTextMedium, size: 10))
+                            },
+                            icon: { Image(ImageNames.inactiveFavourite)
+                            }
+                        )
+                    }
+                }.tag(1)
         }
-        .accentColor(Color.accent)
-    }
-}
-
-extension Color {
-    static var accent: Color {
-        return Color("MainAccentColor")
-    }
-    static var description: Color {
-        return Color("DescriptionTextColor")
+        .accentColor(Color(.accentOrange))
     }
 }
 

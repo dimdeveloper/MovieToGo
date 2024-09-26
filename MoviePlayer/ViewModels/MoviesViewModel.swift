@@ -28,7 +28,6 @@ class MoviesViewModel: ObservableObject {
     @Published var showAlert = false
     @Published var movies: [Movie] = []
     
-    
     var errorMessage: String = "" {
         didSet {
             if oldValue.isEmpty && !errorMessage.isEmpty {

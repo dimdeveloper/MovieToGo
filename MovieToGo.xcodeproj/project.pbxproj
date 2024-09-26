@@ -23,6 +23,14 @@
 		30B0FC682C9AFE64004B63F4 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B0FC672C9AFE64004B63F4 /* Movie.swift */; };
 		30B0FC6A2C9BFFF0004B63F4 /* MovieResponceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B0FC692C9BFFF0004B63F4 /* MovieResponceModel.swift */; };
 		30B0FC6C2C9C1BF0004B63F4 /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B0FC6B2C9C1BF0004B63F4 /* MoviesViewModel.swift */; };
+		30DD23E52CA4AFD40005B01A /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DD23E42CA4AFD40005B01A /* Color.xcassets */; };
+		30DD23EB2CA4BDCD0005B01A /* SFProText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30DD23EA2CA4BDCD0005B01A /* SFProText-Medium.ttf */; };
+		30DD23ED2CA4BE990005B01A /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DD23EC2CA4BE990005B01A /* Fonts.swift */; };
+		30DD23F12CA4C2A80005B01A /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30DD23EE2CA4C2A70005B01A /* Raleway-Medium.ttf */; };
+		30DD23F22CA4C2A80005B01A /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30DD23EF2CA4C2A80005B01A /* Raleway-Bold.ttf */; };
+		30DD23F32CA4C2A80005B01A /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30DD23F02CA4C2A80005B01A /* Raleway-Regular.ttf */; };
+		30DD23F52CA4C6620005B01A /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30DD23F42CA4C6620005B01A /* Raleway-SemiBold.ttf */; };
+		30DD23F72CA4E0280005B01A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DD23F62CA4E0280005B01A /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +52,14 @@
 		30B0FC672C9AFE64004B63F4 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		30B0FC692C9BFFF0004B63F4 /* MovieResponceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResponceModel.swift; sourceTree = "<group>"; };
 		30B0FC6B2C9C1BF0004B63F4 /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
+		30DD23E42CA4AFD40005B01A /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
+		30DD23EA2CA4BDCD0005B01A /* SFProText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Medium.ttf"; sourceTree = "<group>"; };
+		30DD23EC2CA4BE990005B01A /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		30DD23EE2CA4C2A70005B01A /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
+		30DD23EF2CA4C2A80005B01A /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
+		30DD23F02CA4C2A80005B01A /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		30DD23F42CA4C6620005B01A /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
+		30DD23F62CA4E0280005B01A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,8 +100,10 @@
 				30B0FC4B2C9AE951004B63F4 /* MoviePlayerApp.swift */,
 				30B0FC4F2C9AE954004B63F4 /* Assets.xcassets */,
 				30B0FC512C9AE954004B63F4 /* Preview Content */,
+				30DD23E92CA4BD0C0005B01A /* Fonts */,
 				302600442CA0506800C8AE34 /* Config.plist */,
 				3056E5162CA0E34900F1615C /* Launch Screen.storyboard */,
+				30DD23E42CA4AFD40005B01A /* Color.xcassets */,
 			);
 			path = MoviePlayer;
 			sourceTree = "<group>";
@@ -125,6 +143,8 @@
 			children = (
 				30B0FC652C9AFB2D004B63F4 /* NetworkManager.swift */,
 				302600462CA051F000C8AE34 /* AppConfig.swift */,
+				30DD23EC2CA4BE990005B01A /* Fonts.swift */,
+				30DD23F62CA4E0280005B01A /* Constants.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -135,6 +155,18 @@
 				30B0FC6B2C9C1BF0004B63F4 /* MoviesViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		30DD23E92CA4BD0C0005B01A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				30DD23F42CA4C6620005B01A /* Raleway-SemiBold.ttf */,
+				30DD23EF2CA4C2A80005B01A /* Raleway-Bold.ttf */,
+				30DD23EE2CA4C2A70005B01A /* Raleway-Medium.ttf */,
+				30DD23F02CA4C2A80005B01A /* Raleway-Regular.ttf */,
+				30DD23EA2CA4BDCD0005B01A /* SFProText-Medium.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,10 +227,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30DD23F12CA4C2A80005B01A /* Raleway-Medium.ttf in Resources */,
+				30DD23E52CA4AFD40005B01A /* Color.xcassets in Resources */,
 				30B0FC532C9AE954004B63F4 /* Preview Assets.xcassets in Resources */,
 				302600452CA0506800C8AE34 /* Config.plist in Resources */,
+				30DD23F32CA4C2A80005B01A /* Raleway-Regular.ttf in Resources */,
+				30DD23EB2CA4BDCD0005B01A /* SFProText-Medium.ttf in Resources */,
 				3056E5172CA0E34900F1615C /* Launch Screen.storyboard in Resources */,
 				30B0FC502C9AE954004B63F4 /* Assets.xcassets in Resources */,
+				30DD23F22CA4C2A80005B01A /* Raleway-Bold.ttf in Resources */,
+				30DD23F52CA4C6620005B01A /* Raleway-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +257,8 @@
 				30B0FC602C9AEA06004B63F4 /* MovieList.swift in Sources */,
 				30B0FC4C2C9AE951004B63F4 /* MoviePlayerApp.swift in Sources */,
 				30B0FC682C9AFE64004B63F4 /* Movie.swift in Sources */,
+				30DD23ED2CA4BE990005B01A /* Fonts.swift in Sources */,
+				30DD23F72CA4E0280005B01A /* Constants.swift in Sources */,
 				30B0FC642C9AEAAC004B63F4 /* FavouriteMoviesView.swift in Sources */,
 				30B0FC6C2C9C1BF0004B63F4 /* MoviesViewModel.swift in Sources */,
 			);

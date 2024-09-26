@@ -30,12 +30,12 @@ struct MovieDetailView: View {
         .toolbar(content: {
             ToolbarItem(placement: .navigation) {
                 Button(action: {dismiss()}){
-                    Image("BackButton")
+                    Image(ImageNames.backButton)
                 }
             }
             
             ToolbarItem(placement: .principal) {
-                Image("Logo")
+                Image(ImageNames.logo)
             }
         })
     }
@@ -60,14 +60,13 @@ private struct MovieInfoView: View {
                         }
                     VStack(alignment: .leading, spacing: 20) {
                         Text("Description:")
-                            .font(.custom("Raleway", fixedSize: 16))
-                            .fontWeight(.semibold)
+                            .font(.custom(Fonts.ralewaySemiBold, fixedSize: 16))
                         Text(movie.description)
-                            .font(.custom("Raleway", fixedSize: 14))
-                        Text("Release: " + (movie.releaseDate))
-                            .font(.custom("Raleway", fixedSize: 14))
-                            .foregroundColor(Color("MainAccentColor"))
-                            .fontWeight(.semibold)
+                            .font(.custom(Fonts.ralewayRegular, fixedSize: 14))
+                            .foregroundColor(Color(.descriptionText))
+                        Text("Release: \(movie.releaseDate)")
+                            .font(.custom(Fonts.ralewaySemiBold, fixedSize: 14))
+                            .foregroundColor(Color(.accentOrange))
                     }
                 }
             } else {
@@ -78,14 +77,13 @@ private struct MovieInfoView: View {
                         }
                     VStack(alignment: .leading, spacing: 20) {
                         Text("Description:")
-                            .font(.custom("Raleway", fixedSize: 16))
-                            .fontWeight(.semibold)
+                            .font(.custom(Fonts.ralewaySemiBold, fixedSize: 16))
                         Text(movie.description)
-                            .font(.custom("Raleway", fixedSize: 14))
-                        Text("Release: " + (movie.releaseDate))
-                            .font(.custom("Raleway", fixedSize: 14))
-                            .foregroundColor(Color("MainAccentColor"))
-                            .fontWeight(.semibold)
+                            .font(.custom(Fonts.ralewayRegular, fixedSize: 14))
+                            .foregroundColor(Color(.descriptionText))
+                        Text("Release: \(movie.releaseDate)")
+                            .font(.custom(Fonts.ralewaySemiBold, fixedSize: 14))
+                            .foregroundColor(Color(.accentOrange))
                     }
                 }
             }
@@ -111,31 +109,29 @@ private struct MoviewPreviewImage: View {
                     .scaledToFit()
                     .overlay(alignment: .center, content: {
                         ZStack {
-                            Image("Ellipse")
-                            Image("Arrow")
+                            Image(ImageNames.ellipse)
+                            Image(ImageNames.arrow)
                         }
                     })
                     .overlay(alignment: .bottom) {
                         HStack {
                             Text(movie.name)
                                 .foregroundColor(.white)
-                                .font(.custom("Raleway", fixedSize: 16))
+                                .font(.custom(Fonts.ralewayBold, size: 16))
                                 .fontWeight(.bold)
                             Spacer()
                             Text(movie.voteAverage)
                                 .foregroundColor(.white)
-                                .font(.custom("Raleway", fixedSize: 12))
-                            Image("star")
+                                .font(.custom(Fonts.ralewaySemiBold, fixedSize: 12))
+                            Image(ImageNames.star)
                         }
                         .padding(.bottom, 10)
                         .padding(.horizontal, 12)
                     }
             } else {
-                Image(systemName: "photo")
+                Image(ImageNames.imagePlaceholder)
                     .resizable()
                     .scaledToFit()
-                    .foregroundColor(.gray)
-                    .frame(maxWidth: 300, maxHeight: .infinity)
             }
         }
         .frame(maxWidth: 500)

@@ -22,15 +22,13 @@ struct MovieCard: View {
                 
                 VStack(alignment: .leading, spacing: 12) {
                     Text(movie.name)
-                        .font(.custom("Raleway", fixedSize: 14))
-                        .fontWeight(.bold)
+                        .font(.custom(Fonts.ralewayBold, size: 14))
                     Text(movie.description)
-                        .font(.custom("Raleway", fixedSize: 12))
-                        .foregroundColor(Color.description)
+                        .font(.custom(Fonts.ralewayRegular, fixedSize: 12))
+                        .foregroundColor(Color(.descriptionText))
                     Text("Release: \(movie.releaseDate)")
-                        .font(.custom("Raleway", fixedSize: 12))
-                        .foregroundColor(Color.accent)
-                        .fontWeight(.semibold)
+                        .font(.custom(Fonts.ralewaySemiBold, fixedSize: 12))
+                        .foregroundColor(Color(.accentOrange))
                 }
             }
             .onAppear {
@@ -67,7 +65,6 @@ private struct MovieImage: View {
         
     }
 }
-
 
 #Preview {
     MovieCard(movie: Movie.mockMovie, viewModel: MoviesViewModel(networkManager: NetworkManager()))

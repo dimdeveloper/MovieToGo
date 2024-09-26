@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "BigLogo.png",
+      "filename" : "HomeInactive.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "HomeInactive2X.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "HomeInactive3X.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

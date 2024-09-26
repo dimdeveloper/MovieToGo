@@ -17,7 +17,7 @@ struct MovieList: View {
             if !viewModel.errorMessage.isEmpty && viewModel.movies.isEmpty {
                 VStack(spacing: 30) {
                     Image(systemName: "wifi.exclamationmark")
-                        .foregroundColor(Color.accent)
+                        .foregroundColor(Color(.accentOrange))
                         .scaleEffect(2)
                     Text(viewModel.errorMessage)
                     

@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+enum TabItemName: String {
+    case home = "Home"
+    case favourite = "Favourite"
+}
+
 struct TabBar: View {
     
     @State var selection = 0
@@ -22,42 +27,18 @@ struct TabBar: View {
             MovieList()
                 .tabItem {
                     if selection == 0 {
-                        Label(
-                            title: { Text("Home")
-                                    .font(.custom(Fonts.sfProTextMedium, size: 10))
-                            },
-                            icon: { Image(ImageNames.activeHome)
-                            }
-                        )
+                        TabLabel(name: .home, isActive: true)
                     } else {
-                        Label(
-                            title: { Text("Home")
-                                    .font(.custom(Fonts.sfProTextMedium, size: 10))
-                            },
-                            icon: { Image(ImageNames.inactiveHome)
-                            }
-                        )
+                        TabLabel(name: .home, isActive: false)
                     }
                    
                 }.tag(0)
             FavouriteMoviesView()
                 .tabItem {
                     if selection == 1 {
-                        Label(
-                            title: { Text("Favourite")
-                                    .font(.custom(Fonts.sfProTextMedium, size: 10))
-                            },
-                            icon: { Image(ImageNames.activeFavourite)
-                            }
-                        )
+                        TabLabel(name: .favourite, isActive: true)
                     } else {
-                        Label(
-                            title: { Text("Favourite")
-                                    .font(.custom(Fonts.sfProTextMedium, size: 10))
-                            },
-                            icon: { Image(ImageNames.inactiveFavourite)
-                            }
-                        )
+                        TabLabel(name: .favourite, isActive: false)
                     }
                 }.tag(1)
         }
@@ -76,13 +57,47 @@ struct TabBar: View {
     }
 }
 
+struct TabLabel: View {
+    var name: TabItemName
+    let labelFont = Fonts.sfProTextMedium
+    let fontSize: CGFloat = 10
+    var isActive: Bool
+    var activeImage: String
+    var inactiveImage: String
+    
+    init(name: TabItemName, isActive: Bool) {
+        self.name = name
+        self.isActive = isActive
+        switch name {
+        
+        case .home:
+            activeImage = ImageNames.activeHome
+            inactiveImage = ImageNames.inactiveHome
+        case .favourite:
+            activeImage = ImageNames.activeFavourite
+            inactiveImage = ImageNames.inactiveFavourite
+        }
+    }
+    
+    var body: some View {
+        Label(
+            title: { Text(name.rawValue)
+                    .font(.custom(labelFont, size: fontSize))
+            },
+            icon: { Image(isActive == true ? activeImage : inactiveImage)
+            }
+        )
+    }
+}
+
 extension UIImage {
     static func shadowImage(bounds: CGRect, colors: [CGColor]) -> UIImage? {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
         gradientLayer.colors = colors
         UIGraphicsBeginImageContext(gradientLayer.bounds.size)
-        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
+        guard let context = UIGraphicsGetCurrentContext() else {return nil}
+        gradientLayer.render(in: context)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         return image
     }

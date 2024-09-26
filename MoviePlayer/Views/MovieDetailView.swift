@@ -53,12 +53,12 @@ private struct MovieInfoView: View {
         
         ZStack {
             if verticalSizeClass == .regular {
-                VStack(spacing: 20){
+                VStack(spacing: 24){
                     MoviewPreviewImage(image: $image, movie: movie)
                         .onTapGesture {
                             isAlertShow = true
                         }
-                    VStack(alignment: .leading, spacing: 20) {
+                    VStack(alignment: .leading, spacing: 16) {
                         Text("Description:")
                             .font(.custom(Fonts.ralewaySemiBold, fixedSize: 16))
                         Text(movie.description)
@@ -70,22 +70,22 @@ private struct MovieInfoView: View {
                     }
                 }
             } else {
-                HStack(alignment: .top) {
-                    MoviewPreviewImage(image: $image, movie: movie)
-                        .onTapGesture {
-                            isAlertShow = true
+                    HStack(alignment: .top, spacing: 24) {
+                        MoviewPreviewImage(image: $image, movie: movie)
+                            .onTapGesture {
+                                isAlertShow = true
+                            }
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("Description:")
+                                .font(.custom(Fonts.ralewaySemiBold, fixedSize: 16))
+                            Text(movie.description)
+                                .font(.custom(Fonts.ralewayRegular, fixedSize: 14))
+                                .foregroundColor(Color(.descriptionText))
+                            Text("Release: \(movie.releaseDate)")
+                                .font(.custom(Fonts.ralewaySemiBold, fixedSize: 14))
+                                .foregroundColor(Color(.accentOrange))
                         }
-                    VStack(alignment: .leading, spacing: 20) {
-                        Text("Description:")
-                            .font(.custom(Fonts.ralewaySemiBold, fixedSize: 16))
-                        Text(movie.description)
-                            .font(.custom(Fonts.ralewayRegular, fixedSize: 14))
-                            .foregroundColor(Color(.descriptionText))
-                        Text("Release: \(movie.releaseDate)")
-                            .font(.custom(Fonts.ralewaySemiBold, fixedSize: 14))
-                            .foregroundColor(Color(.accentOrange))
                     }
-                }
             }
         }
         .padding()
@@ -98,44 +98,54 @@ private struct MovieInfoView: View {
 private struct MoviewPreviewImage: View {
     
     @Binding var image: Image?
+    let cornerRadius: CGFloat = 8
+    let padding: CGFloat = 12
     
     var movie: Movie
     
     var body: some View {
-        VStack{
-            if let movieImage = image {
-                movieImage
+        ZStack(alignment: .center){
+            ZStack(alignment: .bottom) {
+                if let movieImage = image {
+                    movieImage
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
+                }
+                Image(ImageNames.detailMoviewGradient)
                     .resizable()
                     .scaledToFit()
-                    .overlay(alignment: .center, content: {
-                        ZStack {
-                            Image(ImageNames.ellipse)
-                            Image(ImageNames.arrow)
-                        }
-                    })
-                    .overlay(alignment: .bottom) {
-                        HStack {
-                            Text(movie.name)
-                                .foregroundColor(.white)
-                                .font(.custom(Fonts.ralewayBold, size: 16))
-                                .fontWeight(.bold)
-                            Spacer()
-                            Text(movie.voteAverage)
-                                .foregroundColor(.white)
-                                .font(.custom(Fonts.ralewaySemiBold, fixedSize: 12))
-                            Image(ImageNames.star)
-                        }
-                        .padding(.bottom, 10)
-                        .padding(.horizontal, 12)
-                    }
-            } else {
-                Image(ImageNames.imagePlaceholder)
-                    .resizable()
-                    .scaledToFit()
+                    .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
+                    .padding(.top, 8)
             }
+            
+            Image(ImageNames.ellipse)
+            Image(ImageNames.arrow)
         }
-        .frame(maxWidth: 500)
-        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .overlay(alignment: .bottom) {
+            HStack {
+                Text(movie.name)
+                    .foregroundColor(.white)
+                    .font(.custom(Fonts.ralewayBold, size: 16))
+                    .fontWeight(.bold)
+                Spacer()
+                Text(movie.voteAverage)
+                    .foregroundColor(.white)
+                    .font(.custom(Fonts.ralewaySemiBold, fixedSize: 12))
+                Image(ImageNames.star)
+            }
+            .padding(.bottom, padding)
+            .padding(.horizontal, padding)
+        }
+        
+ 
+                
+               
+                
+                .frame(maxWidth: 500)
+               
+            
+        
     }
 }
 

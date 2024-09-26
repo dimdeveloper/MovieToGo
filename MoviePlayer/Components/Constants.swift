@@ -17,6 +17,6 @@ enum ImageNames {
     static let ellipse = "Ellipse"
     static let arrow = "Arrow"
     static let star = "Star"
-    static let imagePlaceholder = "ImagePlaceholder" 
+    static let detailMoviewGradient = "Gradient"
     
 }

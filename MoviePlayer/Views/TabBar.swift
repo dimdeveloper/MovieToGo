@@ -10,9 +10,11 @@ import SwiftUI
 struct TabBar: View {
     
     @State var selection = 0
+    let shadowColor = CGColor(red: 255, green: 255, blue: 255, alpha: 0.16)
+    let shadowHeight: CGFloat = 4
     
     init(){
-        UITabBar.appearance().unselectedItemTintColor = UIColor(Color(.greyInactive))
+        setupTabBarShadow()
     }
     
     var body: some View {
@@ -60,6 +62,29 @@ struct TabBar: View {
                 }.tag(1)
         }
         .accentColor(Color(.accentOrange))
+    }
+    
+    private func setupTabBarShadow(){
+        let image = UIImage.shadowImage(bounds: CGRect(x: 0, y: 0, width: UIScreen.main.scale, height: shadowHeight), colors: [UIColor.clear.cgColor, shadowColor])
+        let appearance = UITabBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = UIColor.white
+        appearance.backgroundImage = UIImage()
+        appearance.shadowImage = image
+    
+        UITabBar.appearance().standardAppearance = appearance
+    }
+}
+
+extension UIImage {
+    static func shadowImage(bounds: CGRect, colors: [CGColor]) -> UIImage? {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+        gradientLayer.colors = colors
+        UIGraphicsBeginImageContext(gradientLayer.bounds.size)
+        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        return image
     }
 }
 

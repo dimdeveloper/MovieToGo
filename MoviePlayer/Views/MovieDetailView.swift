@@ -49,6 +49,8 @@ private struct MovieInfoView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @State var isAlertShow = false
     @Binding var image: Image?
+    let horizontalSpacing: CGFloat = 24
+    let verticalSpacing: CGFloat = 16
     
     var movie: Movie
     
@@ -61,7 +63,7 @@ private struct MovieInfoView: View {
                         .onTapGesture {
                             isAlertShow = true
                         }
-                    VStack(alignment: .leading, spacing: 16) {
+                    VStack(alignment: .leading, spacing: verticalSpacing) {
                         Text("Description:")
                             .font(.custom(Fonts.ralewaySemiBold, fixedSize: 16))
                         Text(movie.description)
@@ -73,7 +75,7 @@ private struct MovieInfoView: View {
                     }
                 }
             } else {
-                    HStack(alignment: .top, spacing: 24) {
+                    HStack(alignment: .top, spacing: horizontalSpacing) {
                         MoviewPreviewImage(image: $image, movie: movie)
                             .onTapGesture {
                                 isAlertShow = true
@@ -91,7 +93,7 @@ private struct MovieInfoView: View {
                     }
             }
         }
-        .padding()
+        .padding(.horizontal, 16)
         .alert(isPresented: $isAlertShow, content: {
             Alert(title: Text(movie.name))
         })
@@ -140,15 +142,7 @@ private struct MoviewPreviewImage: View {
             .padding(.bottom, padding)
             .padding(.horizontal, padding)
         }
-        
- 
-                
-               
-                
-                .frame(maxWidth: 500)
-               
-            
-        
+        .frame(maxWidth: 500)
     }
 }
 

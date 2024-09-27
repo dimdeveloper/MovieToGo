@@ -16,28 +16,31 @@ struct MovieDetailView: View {
     var movie: Movie
     
     var body: some View {
-
-        ScrollView {
-            MovieInfoView(image: $image, movie: movie)
-        }
-        .onAppear {
-            viewModel.loadImage(imagePath: movie.backdropPath) { data in
-                guard let image = UIImage(data: data) else {return}
-                self.image = Image(uiImage: image)
+        ZStack {
+            Color(.background)
+                .ignoresSafeArea()
+            ScrollView {
+                MovieInfoView(image: $image, movie: movie)
             }
-        }
-        .navigationBarBackButtonHidden(true)
-        .toolbar(content: {
-            ToolbarItem(placement: .navigation) {
-                Button(action: {dismiss()}){
-                    Image(ImageNames.backButton)
+            .onAppear {
+                viewModel.loadImage(imagePath: movie.backdropPath) { data in
+                    guard let image = UIImage(data: data) else {return}
+                    self.image = Image(uiImage: image)
                 }
             }
-            
-            ToolbarItem(placement: .principal) {
-                Image(ImageNames.logo)
-            }
-        })
+            .navigationBarBackButtonHidden(true)
+            .toolbar(content: {
+                ToolbarItem(placement: .navigation) {
+                    Button(action: {dismiss()}){
+                        Image(ImageNames.backButton)
+                    }
+                }
+                
+                ToolbarItem(placement: .principal) {
+                    Image(ImageNames.logo)
+                }
+            })
+        }
     }
 }
 

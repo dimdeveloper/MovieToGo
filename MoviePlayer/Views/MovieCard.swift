@@ -13,14 +13,17 @@ struct MovieCard: View {
     
     var movie: Movie
     var viewModel: MoviesViewModel
+    let horizontalSpacing: CGFloat = 20
+    let verticalSpacing: CGFloat = 12
+    let cornerRadius: CGFloat = 12
     
     var body: some View {
         ZStack {
-            HStack(alignment: .top) {
+            HStack(alignment: .top, spacing: horizontalSpacing) {
                
                 MovieImage(image: image)
                 
-                VStack(alignment: .leading, spacing: 12) {
+                VStack(alignment: .leading, spacing: verticalSpacing) {
                     Text(movie.name)
                         .font(.custom(Fonts.ralewayBold, size: 14))
                     Text(movie.description)
@@ -38,13 +41,16 @@ struct MovieCard: View {
                 }
             }
         }
-        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
     }
 }
 
 private struct MovieImage: View {
     
     var image: Image?
+    let imageWidth: CGFloat = 128
+    let imageHeight: CGFloat = 188
+    let cornerRadius: CGFloat = 8
     
     var body: some View {
         VStack {
@@ -52,14 +58,14 @@ private struct MovieImage: View {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 128, height: 188)
-                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                    .frame(width: imageWidth, height: imageHeight)
+                    .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
             } else {
                 Image(systemName: "photo")
                     .resizable()
                     .scaledToFit()
                     .foregroundColor(.gray)
-                    .frame(width: 128)
+                    .frame(width: imageWidth)
             }
         }
         

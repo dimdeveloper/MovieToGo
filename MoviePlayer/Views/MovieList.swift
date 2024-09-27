@@ -10,23 +10,17 @@ import SwiftUI
 struct MovieList: View {
     
     @StateObject var viewModel = MoviesViewModel(networkManager: NetworkManager())
+    private var verticalSpacing: CGFloat = 20
     
     var body: some View {
         
         ZStack {
+            Color(.background)
+                .ignoresSafeArea()
             if !viewModel.errorMessage.isEmpty && viewModel.movies.isEmpty {
-                VStack(spacing: 30) {
-                    Image(systemName: "wifi.exclamationmark")
-                        .foregroundColor(Color(.accentOrange))
-                        .scaleEffect(2)
-                    Text(viewModel.errorMessage)
-                    
-                    Button("Update") {
-                        viewModel.errorMessage = ""
-                        viewModel.fetchMovies()
-                    }
-                    .buttonStyle(.borderedProminent)
-                }
+                
+                ConnectionErrorView(viewModel: viewModel)
+                
             } else {
                 VStack {
                     if viewModel.movies.isEmpty {
@@ -37,8 +31,10 @@ struct MovieList: View {
                                 List(viewModel.movies) { movie in
                                     
                                     MovieCard(movie: movie, viewModel: viewModel)
+                                        .listRowInsets(.init(top: 20, leading: 16, bottom: 20, trailing: 16))
                                         .overlay(NavigationLink(destination: MovieDetailView(viewModel: viewModel, movie: movie)) {
                                         }.fixedSize().opacity(0.0))
+                                    
                                     
                                     if viewModel.movies.last?.id == movie.id {
                                         if viewModel.currentMoviesPage < viewModel.pagesCount {
@@ -46,20 +42,19 @@ struct MovieList: View {
                                         }
                                     }
                                 }
+                                .listRowSpacing(verticalSpacing)
                             }
                             .navigationBarTitleDisplayMode(.inline)
                             .toolbar {
                                 ToolbarItem(placement: .principal) {
                                     VStack {
                                         Spacer()
-                                        Image("Logo")
+                                        Image(ImageNames.logo)
                                     }
                                 }
                             }
                         }
-                        .listRowSpacing(20)
                     }
-                    
                 }
                 .onAppear(){
                     viewModel.fetchMovies()
@@ -69,8 +64,28 @@ struct MovieList: View {
             
         }
         .alert(Text(viewModel.errorMessage), isPresented: $viewModel.showAlert) {
-                Button("OK") {}
+            Button("OK") {}
+        }
+    }
+}
+
+struct ConnectionErrorView: View {
+    
+    var viewModel: MoviesViewModel
+    
+    var body: some View {
+        VStack(spacing: 30) {
+            Image(systemName: ImageNames.wifiError)
+                .foregroundColor(Color(.accentOrange))
+                .scaleEffect(2)
+            Text(viewModel.errorMessage)
+            
+            Button("Update") {
+                viewModel.errorMessage = ""
+                viewModel.fetchMovies()
             }
+            .buttonStyle(.borderedProminent)
+        }
     }
 }
 
@@ -96,7 +111,7 @@ struct LastRowListView: View {
 
 struct ActivityIndicator: View {
     
-    var tintColor: Color = .orange
+    var tintColor: Color = Color(.accentOrange)
     
     var body: some View {
         ProgressView()

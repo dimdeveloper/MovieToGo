@@ -18,6 +18,7 @@ enum ImageNames {
     static let arrow = "Arrow"
     static let star = "Star"
     static let detailMoviewGradient = "Gradient"
+    static let wifiError = "wifi.exclamationmark"
     
 }
 

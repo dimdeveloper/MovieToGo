@@ -61,11 +61,9 @@ private struct MovieImage: View {
                     .frame(width: imageWidth, height: imageHeight)
                     .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
             } else {
-                Image(systemName: "photo")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundColor(.gray)
-                    .frame(width: imageWidth)
+                Color(.background)
+                    .frame(width: imageWidth, height: imageHeight)
+                    .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
             }
         }
         

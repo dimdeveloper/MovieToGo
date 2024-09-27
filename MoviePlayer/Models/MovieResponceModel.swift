@@ -21,6 +21,7 @@ struct MoviesResponce: Decodable {
 
 extension MoviesResponce {
     struct MovieResponceModel: Decodable {
+        let id: Int?
         let originalTitle: String?
         let overview: String?
         let posterPath: String?
@@ -29,6 +30,7 @@ extension MoviesResponce {
         let voteAverage: Double?
         
         private enum CodingKeys: String, CodingKey {
+            case id
             case posterPath = "poster_path"
             case releaseDate = "release_date"
             case originalTitle = "original_title"

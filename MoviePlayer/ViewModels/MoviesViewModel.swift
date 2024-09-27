@@ -63,7 +63,11 @@ class MoviesViewModel: ObservableObject {
                 if self.movies.isEmpty {
                     self.movies = fetchedMovies
                 } else {
-                    self.movies.append(contentsOf: fetchedMovies)
+                    fetchedMovies.forEach { newMovie in
+                        if !self.movies.contains(where: {$0.id == newMovie.id} ) {
+                            self.movies.append(newMovie)
+                        }
+                    }
                 }
                 self.logger.info("\(LoggerMessages.fetchSucess)")
                 self.errorMessage = ""
@@ -107,13 +111,14 @@ extension MoviesViewModel {
         self.pagesCount = fetchResult.totalPages
         
         fetchResult.results.forEach { result in
+            guard let id = result.id else {return}
             let movieName = result.originalTitle ?? Defaults.name
             let description = result.overview ?? Defaults.description
             let posterPath = result.posterPath
             let backdropPath = result.backdropPath
             let voteGrade = result.voteAverage != nil ? String(format: "%.1f", result.voteAverage!) : Defaults.voteGrade
             let dateString = result.releaseDate != nil ? formatDate(from: result.releaseDate!) : Defaults.date
-            let movie = Movie(name: movieName, description: description, releaseDate: dateString, posterPath: posterPath, backdropPath: backdropPath, voteAverage: voteGrade)
+            let movie = Movie(id: id, name: movieName, description: description, releaseDate: dateString, posterPath: posterPath, backdropPath: backdropPath, voteAverage: voteGrade)
             movies.append(movie)
         }
         return movies
